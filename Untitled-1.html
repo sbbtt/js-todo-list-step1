@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+    <div class='alert-box' id='alert'>
+       <p id="title">글자~ 나는 아직 바뀌기 전이야 ~</p>
+       <button onclick="" id="close"> X</button>
+    </div>
+         <button onclick="제목바꾸기('아이디 입력해라')">버튼1</button>
+         <button onclick="제목바꾸기('비번 입력해라')">버튼2</button>
+    <script>
+        document.getElementById('close').addEventListener('click', function(){
+            document.getElementById('alert').style.display = 'none';
+        })
+
+        function 제목바꾸기(arg1){
+            document.getElementById('title').innerHTML = arg1;
+            document.getElementById('alert').style.display = 'block';
+        }
+         
+    </script>
+</body>
+</html>

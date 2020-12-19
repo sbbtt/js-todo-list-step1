@@ -5,40 +5,56 @@
 // todo list의 item갯수를 count한 갯수를 리스트의 하단에 보여주기
 // todo list의 상태값을 확인하여, 해야할 일과, 완료한 일을 클릭하면 해당 상태의 아이템만 보여주기
 
-const input = document.getElementById('new-todo-title');
 const ul = document.getElementById('todo-list');
 const root = document.querySelector('.todoapp');
+const input = document.querySelector('#new-todo-title');
 
-input.addEventListener('keypress', onKeypressHandler);
 root.addEventListener('click', onClickHandler);
+input.addEventListener('keypress', keypressHandler);
 
-
-
-function onKeypressHandler(event){
-        const title = event.target.value;
-    if(event.key==='Enter'){
-        ul.insertAdjacentHTML("beforeend", rendering(title));
-        input.value = ''; //input을 초기화 시켜주는 것임.
+function keypressHandler(e){
+    //input창에 텍스트르 ㄹ입력했을때 
+    //ul태그안에 li 추가되었으면 함 .
+    // li 안에는 키보드 누른 텍스트값 들어가긔
+    console.log(e);
+    const text = e.target.value ; 
+    if(e.key === "Enter"){
+        ul.insertAdjacentHTML("beforeend", rendering(text))
+        const reset = e.target.value = "";
     }
 }
+
+
 function onClickHandler(e){
     const $className = e.target.className;
     const $li = e.target.closest('li');
     if($className === 'toggle') {
-       $li.classList.toggle('completed');
-
+        $li.classList.toggle('completed');
+        
     }
-
+    
 }
 
 
-function rendering(title){
+function rendering(text){
     return       ` <li>
-                  <div class="view">
-                      <input class="toggle" type="checkbox">
-                      <label class="label">${title}</label>
-                      <button class="destroy"></button>
-                  </div>
-                  <input class="edit" value="새로운 타이틀">
-              </li>`
+    <div class="view">
+    <input class="toggle" type="checkbox">
+    <label class="label">${text}</label>
+    <button class="destroy"></button>
+    </div>
+    <input class="edit" value="새로운 타이틀">
+    </li>`
 }
+
+
+// const input = document.getElementById('new-todo-title');
+// input.addEventListener('keypress', onKeypressHandler);
+
+// function onKeypressHandler(event){
+    //         const title = event.target.value;
+    //     if(event.key==='Enter'){
+//         ul.insertAdjacentHTML("beforeend", rendering(title));
+//         input.value = ''; //input을 초기화 시켜주는 것임.
+//     }
+// }
