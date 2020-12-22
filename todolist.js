@@ -13,9 +13,34 @@ const input = document.querySelector('#new-todo-title');
 
 input.addEventListener('keypress', keypressHandler);
 root.addEventListener('click', clickEvent)
+root.addEventListener('click', xBtn)
+root.addEventListener('dblclick', editor)
+
+
+function editor(e){
+    let li = e.target.closest('li');
+    if(e.target.className==='label'){
+    li.classList.toggle('editing');
+}
+        if(e.key === 'Enter'){
+            li.removeEventListener('dblclick', editor)
+        }
+}
+
+
+function xBtn(e){
+    if(e.target.className==='destroy'){
+        let li = e.target.closest('li');
+        ul.removeChild(li);
+
+        console.log(e)
+    }
+}
 
 function clickEvent(e){
     if(e.target.className === 'toggle'){
+        console.log(e)
+        // e.target.closest('li').classList.toggle('completed');
         e.target.closest('li').classList.toggle('completed');
     }
 }
